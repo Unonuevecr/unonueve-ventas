@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Portal de Ventas · UNONUEVECR</title>
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#EFE7DC; --surface:#F6F1E9; --surface-2:#FBF8F3;
+  --ink:#14110E; --ink-soft:#443C34; --ink-mute:#7A6E5F;
+  --accent:#A66F1E; --accent-hi:#C8892F;
+  --rule:rgba(20,17,14,.13); --rule-soft:rgba(20,17,14,.07);
+  --chip:rgba(20,17,14,.05); --mal:#9B2C2C;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#14110E; --surface:#1D1915; --surface-2:#241F1A;
+  --ink:#EFE7DC; --ink-soft:#C4B9AB; --ink-mute:#8D8172;
+  --accent:#E0B168; --accent-hi:#E0B168;
+  --rule:rgba(239,231,220,.14); --rule-soft:rgba(239,231,220,.07);
+  --chip:rgba(239,231,220,.06); --mal:#E08585;
+}}
+:root[data-theme="dark"]{
+  --ground:#14110E; --surface:#1D1915; --surface-2:#241F1A;
+  --ink:#EFE7DC; --ink-soft:#C4B9AB; --ink-mute:#8D8172;
+  --accent:#E0B168; --accent-hi:#E0B168;
+  --rule:rgba(239,231,220,.14); --rule-soft:rgba(239,231,220,.07);
+  --chip:rgba(239,231,220,.06); --mal:#E08585;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-weight:300;font-size:17px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+em{font-family:'Instrument Serif',Georgia,serif;font-style:italic}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.oculto{display:none !important}
+
+/* ── entrada ── */
+#entrada{flex:1;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.tarjeta{width:100%;max-width:26rem}
+.marca{display:flex;align-items:center;gap:.55rem;color:var(--ink);margin-bottom:2.2rem}
+.marca svg{height:22px;width:auto;display:block}
+.marca span{font-size:.74rem;font-weight:600;letter-spacing:.13em}
+.marca span i{color:var(--accent);font-style:normal}
+.eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--accent);margin:0}
+h1{font-size:2.1rem;font-weight:300;line-height:1.08;letter-spacing:-.028em;margin:.6rem 0 0;text-wrap:balance}
+h1 em{color:var(--accent)}
+.sub{font-size:.95rem;color:var(--ink-soft);margin:.8rem 0 0}
+form{display:flex;flex-direction:column;gap:.9rem;margin-top:2rem}
+label{display:flex;flex-direction:column;gap:.35rem}
+label span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
+input{font-family:inherit;font-size:1rem;font-weight:400;color:var(--ink);background:var(--surface);
+  border:1px solid var(--rule);border-radius:5px;padding:.75rem .9rem;width:100%}
+input:focus{border-color:var(--accent);outline:none}
+button{font-family:inherit;font-size:.95rem;font-weight:500;cursor:pointer;border:none;
+  background:var(--ink);color:var(--ground);border-radius:100px;padding:.8rem 1.6rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;transition:opacity .18s}
+button:hover{opacity:.85}
+button[disabled]{opacity:.45;cursor:default}
+.aviso-mal{font-size:.9rem;color:var(--mal);margin:0;min-height:1.3rem}
+.pie{font-size:.82rem;color:var(--ink-mute);margin:2.2rem 0 0;padding-top:1.1rem;border-top:1px solid var(--rule-soft)}
+
+/* ── portal ── */
+#portal{flex:1;display:flex;flex-direction:column;min-height:0}
+.barra{border-bottom:1px solid var(--rule);background:var(--surface-2);flex-shrink:0}
+.barra-in{max-width:100%;margin:0 auto;padding:.65rem 1.4rem;display:flex;align-items:center;gap:.9rem}
+.barra .marca{margin:0}
+.quien{margin-left:auto;display:flex;align-items:center;gap:.8rem;font-size:.82rem;color:var(--ink-mute)}
+.quien b{color:var(--ink);font-weight:500}
+.salir{background:none;color:var(--ink-mute);border:1px solid var(--rule);padding:.3rem .8rem;
+  font-size:.78rem;border-radius:100px}
+.salir:hover{color:var(--accent);border-color:var(--accent)}
+
+.pestanas{flex-shrink:0;display:flex;gap:.2rem;padding:0 1.4rem;border-bottom:1px solid var(--rule);
+  background:var(--surface-2);overflow-x:auto;scrollbar-width:none}
+.pestanas::-webkit-scrollbar{display:none}
+.pes{flex:0 0 auto;background:none;border:none;border-bottom:2px solid transparent;
+  border-radius:0;padding:.85rem 1rem .7rem;color:var(--ink-mute);font-size:.95rem;font-weight:400;
+  letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:color .18s,border-color .18s}
+.pes:hover{color:var(--ink);opacity:1}
+.pes[aria-current="true"]{color:var(--ink);border-bottom-color:var(--accent-hi);font-weight:500}
+.pes:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+
+.tira{flex-shrink:0;display:flex;align-items:baseline;gap:1rem;padding:.6rem 1.4rem;
+  border-bottom:1px solid var(--rule-soft);background:var(--surface)}
+.tira p{margin:0;font-size:.85rem;color:var(--ink-soft);line-height:1.4}
+.tira u{margin-left:auto;text-decoration:none;font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);white-space:nowrap}
+.grande-btn{background:none;border:1px solid var(--rule);color:var(--ink-mute);border-radius:100px;
+  padding:.28rem .8rem;font-size:.75rem;white-space:nowrap;flex-shrink:0}
+.grande-btn:hover{color:var(--accent);border-color:var(--accent);opacity:1}
+
+.visor{position:relative;flex:1;min-height:0;background:var(--ground)}
+.visor iframe{width:100%;height:100%;border:none;display:block;background:var(--ground)}
+.cargando{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:var(--ground);font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-mute);padding:2rem;text-align:center}
+
+@media(max-width:820px){
+  h1{font-size:1.8rem}
+  .barra-in{padding:.6rem .9rem}
+  .quien b{display:none}
+  .pestanas{padding:0 .9rem}
+  .pes{padding:.75rem .8rem .6rem;font-size:.88rem}
+  .tira{padding:.55rem .9rem}
+  .tira u{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<section id="entrada">
+  <div class="tarjeta">
+    <div class="marca">
+      <svg viewBox="0 0 647.47 557.92" fill="currentColor" role="img" aria-label="UNONUEVECR"><path d="M102.04,0v543.23h-38.91V52.12L5.14,114.52l-5.14-4.4L102.04,0Z"/><path d="M137.27,372.92c0-18.35,14.68-33.03,33.04-33.03s32.3,14.68,32.3,33.03-14.68,32.3-32.3,32.3-33.04-14.68-33.04-32.3ZM137.27,524.88c0-17.62,14.68-32.3,33.04-32.3s32.3,14.68,32.3,32.3-14.68,33.03-32.3,33.03-33.04-14.68-33.04-33.03Z"/><path d="M352.36,549.84c140.21,0,224.63-132.14,246.66-255.47-26.43,65.33-90.29,106.44-161.5,106.44-116.72,0-199.68-83.69-199.68-199.67S326.67,2.2,437.52,2.2c129.2,0,209.95,104.98,209.95,228.31,0,162.97-123.33,326.67-295.11,326.67v-7.34ZM605.62,225.37c0-99.84-53.59-216.56-168.11-216.56-101.31,0-158.57,101.31-158.57,192.33s57.26,192.33,158.57,192.33c94.7,0,168.11-73.41,168.11-168.11Z"/></svg>
+      <span>UNONUEVE<i>CR</i></span>
+    </div>
+    <p class="eyebrow">Portal de ventas</p>
+    <h1>El material está<br>aquí <em>adentro</em>.</h1>
+    <p class="sub">Manual, speeches, inducción y precios. Entrá con el usuario que te dio Gerson.</p>
+    <form id="form">
+      <label><span>Usuario</span><input id="usuario" name="usuario" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+      <label><span>Contraseña</span><input id="clave" name="clave" type="password" autocomplete="current-password" required></label>
+      <p class="aviso-mal" id="error" role="alert"></p>
+      <button id="btn" type="submit">Entrar <span aria-hidden="true">&rarr;</span></button>
+    </form>
+    <p class="pie">Este material es interno. No se reenvía, no se manda al cliente y no se sube a redes.
+    Si perdiste la contraseña, escribile a Gerson al 6050-8446.</p>
+  </div>
+</section>
+
+<section id="portal" class="oculto">
+  <div class="barra">
+    <div class="barra-in">
+      <div class="marca">
+        <svg viewBox="0 0 647.47 557.92" fill="currentColor" role="img" aria-label="UNONUEVECR"><path d="M102.04,0v543.23h-38.91V52.12L5.14,114.52l-5.14-4.4L102.04,0Z"/><path d="M137.27,372.92c0-18.35,14.68-33.03,33.04-33.03s32.3,14.68,32.3,33.03-14.68,32.3-32.3,32.3-33.04-14.68-33.04-32.3ZM137.27,524.88c0-17.62,14.68-32.3,33.04-32.3s32.3,14.68,32.3,32.3-14.68,33.03-32.3,33.03-33.04-14.68-33.04-33.03Z"/><path d="M352.36,549.84c140.21,0,224.63-132.14,246.66-255.47-26.43,65.33-90.29,106.44-161.5,106.44-116.72,0-199.68-83.69-199.68-199.67S326.67,2.2,437.52,2.2c129.2,0,209.95,104.98,209.95,228.31,0,162.97-123.33,326.67-295.11,326.67v-7.34ZM605.62,225.37c0-99.84-53.59-216.56-168.11-216.56-101.31,0-158.57,101.31-158.57,192.33s57.26,192.33,158.57,192.33c94.7,0,168.11-73.41,168.11-168.11Z"/></svg>
+        <span>UNONUEVE<i>CR</i></span>
+      </div>
+      <div class="quien"><b id="nombre"></b><button class="salir" id="salir" type="button">Salir</button></div>
+    </div>
+  </div>
+  <div class="pestanas" id="pestanas" role="tablist" aria-label="Documentos"></div>
+  <div class="tira">
+    <p id="tira-txt"></p>
+    <u id="tira-fecha"></u>
+    <button class="grande-btn" id="agrandar" type="button">Pantalla completa</button>
+  </div>
+  <div class="visor" id="visor"></div>
+</section>
+
+<script>
+(function(){
+  var API = "https://n8n-unonueve-n8n.i5i6e4.easypanel.host/webhook/portal-ventas";
+  var entrada = document.getElementById("entrada");
+  var portal  = document.getElementById("portal");
+  var form    = document.getElementById("form");
+  var btn     = document.getElementById("btn");
+  var error   = document.getElementById("error");
+  var pestanas= document.getElementById("pestanas");
+  var visor   = document.getElementById("visor");
+  var tiraTxt = document.getElementById("tira-txt");
+  var tiraFec = document.getElementById("tira-fecha");
+  var elNombre= document.getElementById("nombre");
+  var sesion  = null;
+
+  function pedir(cuerpo){
+    return fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cuerpo)
+    }).then(function(r){ return r.json().catch(function(){ return { ok:false, motivo:"El servidor no contestó bien. Probá otra vez." }; }); });
+  }
+
+  function guardarSesion(s){
+    sesion = s;
+    try { sessionStorage.setItem("u9ventas", JSON.stringify(s)); } catch(e){}
+  }
+  function leerSesion(){
+    try {
+      var s = JSON.parse(sessionStorage.getItem("u9ventas"));
+      if (s && s.token && new Date(s.expira).getTime() > Date.now()) return s;
+    } catch(e){}
+    return null;
+  }
+  function salir(){
+    sesion = null;
+    try { sessionStorage.removeItem("u9ventas"); } catch(e){}
+    portal.classList.add("oculto");
+    entrada.classList.remove("oculto");
+    pestanas.innerHTML = "";
+    visor.innerHTML = "";
+    tiraTxt.textContent = "";
+    tiraFec.textContent = "";
+    document.getElementById("clave").value = "";
+  }
+
+  function pintarPestanas(docs){
+    pestanas.innerHTML = "";
+    docs.forEach(function(d, i){
+      var b = document.createElement("button");
+      b.className = "pes";
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-current", "false");
+      b.textContent = d.titulo;
+      b.addEventListener("click", function(){ activar(i, docs); });
+      pestanas.appendChild(b);
+    });
+    if (docs.length) activar(0, docs);
+  }
+
+  function activar(i, docs){
+    var d = docs[i];
+    Array.prototype.forEach.call(pestanas.children, function(o, j){
+      o.setAttribute("aria-current", j === i ? "true" : "false");
+    });
+    pestanas.children[i].scrollIntoView({ block: "nearest", inline: "nearest" });
+    tiraTxt.textContent = d.resumen || "";
+    tiraFec.textContent = d.actualizado ? "Actualizado " + d.actualizado : "";
+    abrir(d.slug, d.titulo);
+  }
+
+  function abrir(slug, titulo){
+    visor.innerHTML = "";
+    var cargando = document.createElement("div");
+    cargando.className = "cargando";
+    cargando.textContent = "Abriendo " + titulo;
+    visor.appendChild(cargando);
+
+    pedir({ accion: "doc", token: sesion.token, slug: slug }).then(function(r){
+      if (!r.ok) {
+        cargando.textContent = r.motivo || "No se pudo abrir.";
+        if (/sesion|sesión/i.test(r.motivo || "")) setTimeout(salir, 1800);
+        return;
+      }
+      var marco = document.createElement("iframe");
+      marco.setAttribute("title", r.titulo || titulo);
+      marco.setAttribute("allowfullscreen", "");
+      marco.setAttribute("allow", "fullscreen");
+      marco.setAttribute("srcdoc", r.html);
+      visor.appendChild(marco);
+      cargando.remove();
+    }).catch(function(){
+      cargando.textContent = "No hay conexión. Revisá el internet y probá otra vez.";
+    });
+  }
+
+  function entrar(s){
+    guardarSesion(s);
+    elNombre.textContent = s.nombre;
+    entrada.classList.add("oculto");
+    portal.classList.remove("oculto");
+    pintarPestanas(s.docs || []);
+  }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    error.textContent = "";
+    btn.disabled = true;
+    btn.textContent = "Entrando…";
+    pedir({
+      accion: "login",
+      usuario: document.getElementById("usuario").value,
+      clave: document.getElementById("clave").value
+    }).then(function(r){
+      btn.disabled = false;
+      btn.innerHTML = 'Entrar <span aria-hidden="true">&rarr;</span>';
+      if (!r.ok) { error.textContent = r.motivo || "No se pudo entrar."; return; }
+      entrar(r);
+    }).catch(function(){
+      btn.disabled = false;
+      btn.innerHTML = 'Entrar <span aria-hidden="true">&rarr;</span>';
+      error.textContent = "No hay conexión. Revisá el internet y probá otra vez.";
+    });
+  });
+
+  document.getElementById("salir").addEventListener("click", salir);
+
+  document.getElementById("agrandar").addEventListener("click", function(){
+    var marco = visor.querySelector("iframe");
+    if (!marco) return;
+    if (document.fullscreenElement) { document.exitFullscreen(); return; }
+    if (marco.requestFullscreen) marco.requestFullscreen();
+    else if (marco.webkitRequestFullscreen) marco.webkitRequestFullscreen();
+  });
+  document.addEventListener("fullscreenchange", function(){
+    document.getElementById("agrandar").textContent =
+      document.fullscreenElement ? "Salir de pantalla completa" : "Pantalla completa";
+  });
+
+  var previa = leerSesion();
+  if (previa) entrar(previa);
+})();
+</script>
+</body>
+</html>
